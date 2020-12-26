@@ -14,12 +14,12 @@ function App() {
 
             <div className='row'>
                 <div className='col'>
-                    <h2>Синхронные посты</h2>
+                    <h2>Synchronous posts</h2>
                     <Posts/>
                 </div>
                 <div className='col'>
-                    <h2>Асинхронные посты</h2>
-                    <FetchedPosts posts={[]}/>
+                    <h2>Asynchronous posts</h2>
+                    <FetchedPosts/>
                 </div>
             </div>
         </div>

@@ -1,9 +1,17 @@
 import React from "react";
 import {Post} from "./Post";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchPostThunk} from "../store/postsReducer";
 
-export const FetchedPosts = ({posts}) => {
+export const FetchedPosts = () => {
 
-    if (!posts.length) return <button className='btn btn-primary'>Download</button>
+    const dispatch = useDispatch()
+    const {fetchedPosts} = useSelector(state => state.posts)
 
-    return posts.map(p => <Post key={p} post={p}/>)
+    if (!fetchedPosts.length) return <button
+        className='btn btn-primary'
+        onClick={() => dispatch(fetchPostThunk())}
+    >Download</button>
+
+    return fetchedPosts.map(p => <Post key={p.id} postTitle={p.title}/>)
 }

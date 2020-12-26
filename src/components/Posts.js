@@ -7,5 +7,5 @@ export const Posts = () => {
     const {posts} = useSelector(state => state.posts)
     if (!posts.length) return <p className='text-center'>Постов пока нет</p>
 
-    return posts.map(p => <Post key={p.id} post={p}/>)
+    return posts.map(p => <Post key={p.id} postTitle={p.title}/>)
 }
