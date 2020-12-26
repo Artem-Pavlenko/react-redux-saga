@@ -1,9 +1,9 @@
 import React from "react";
+import {Post} from "./Post";
 
-export const FetchedPosts = () => {
-    return (
-        <div>
-            <b>FETCHED POSTS</b>
-        </div>
-    )
+export const FetchedPosts = ({posts}) => {
+
+    if (!posts.length) return <button className='btn btn-primary'>Download</button>
+
+    return posts.map(p => <Post key={p} post={p}/>)
 }

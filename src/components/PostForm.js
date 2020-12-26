@@ -1,17 +1,52 @@
 import React from "react";
+import {connect} from "react-redux";
+import {createPost} from "../store/actions";
 
-export default class PostForm extends React.Component {
+class PostForm extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            title: ''
+        }
+    }
+
+    submitHandler = event => {
+        event.preventDefault()
+        if (this.state.title.trim()) {
+            this.props.createPost({
+                title: this.state.title, id: Date.now().toString()
+            })
+            this.setState({title: ''})
+        }
+    }
+
+    changeInput = event => {
+        this.setState(prevState => ({
+            ...prevState,
+            [event.target.name]: event.target.value
+        }))
     }
 
     render() {
         return (
-            <div>
-                <b>POST FORM</b>
-            </div>
+            <form onSubmit={this.submitHandler}>
+                <div className="mb-3">
+                    <label htmlFor="title" className="form-label">Post title</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="title"
+                        name='title'
+                        value={this.state.title}
+                        onChange={this.changeInput}
+                    />
+                </div>
+                <button className='btn btn-success' type='submit' disabled={!this.state.title}>Create</button>
+            </form>
         )
     }
 }
+
+
+export default connect(null, {createPost})(PostForm)
