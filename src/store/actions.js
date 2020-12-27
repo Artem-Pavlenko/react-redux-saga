@@ -15,12 +15,7 @@ export const fetchPostThunk = () => async (dispatch) => {
         dispatch(hideLoader())
     }
 }
-
-export const fetchPostSaga = () => {
-    return {
-        type: REQUEST_POSTS
-    }
-}
+export const fetchPostSaga = () => ({type: REQUEST_POSTS})
 
 // appReducer
 export const showLoader = () => ({type: SHOW_LOADER})
@@ -30,6 +25,6 @@ export const advancedShowAlert = (text) => (dispatch) => {
     dispatch({type: SHOW_ALERT, payload: text})
     setTimeout(() => {
         dispatch(hideAlert())
-    }, 5000)
+    }, 3000)
 }
 export const hideAlert = () => ({type: HIDE_ALERT})

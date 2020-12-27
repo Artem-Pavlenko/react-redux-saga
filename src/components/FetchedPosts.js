@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Post} from "./Post";
 import {Loader} from "../assets/Loader";
-import {fetchPostSaga, fetchPostThunk} from "../store/actions";
+import {fetchPostSaga} from "../store/actions";
 
 export const FetchedPosts = () => {
 

@@ -1,4 +1,3 @@
-
 export const CREATE_POST = 'post/CREATE_POST'
 export const FETCH_POST = 'post/FETCH_POST'
 export const REQUEST_POSTS = 'post/REQUEST_POSTS'
