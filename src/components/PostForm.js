@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {createPost} from "../store/actions";
+import {createPost, hideAlert, showAlert} from "../store/actions";
+import {Alert} from "../assets/Alert";
 
 class PostForm extends React.Component {
 
@@ -18,6 +19,8 @@ class PostForm extends React.Component {
                 title: this.state.title, id: Date.now().toString()
             })
             this.setState({title: ''})
+        } else if (!this.state.title.trim()) {
+            this.props.showAlert('The post title cannot be empty.')
         }
     }
 
@@ -26,11 +29,13 @@ class PostForm extends React.Component {
             ...prevState,
             [event.target.name]: event.target.value
         }))
+        this.props.hideAlert()
     }
 
     render() {
         return (
             <form onSubmit={this.submitHandler}>
+                {this.props.alert && <Alert text={this.props.alert}/>}
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Post title</label>
                     <input
@@ -42,11 +47,20 @@ class PostForm extends React.Component {
                         onChange={this.changeInput}
                     />
                 </div>
-                <button className='btn btn-success' type='submit' disabled={!this.state.title}>Create</button>
+                <button
+                    className='btn btn-success'
+                    type='submit'
+                    // disabled={!this.state.title}
+                >Create
+                </button>
             </form>
         )
     }
 }
 
+const mapStateToProps = state => ({
+    alert: state.app.alert
+})
 
-export default connect(null, {createPost})(PostForm)
+
+export default connect(mapStateToProps, {createPost, showAlert, hideAlert})(PostForm)
