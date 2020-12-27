@@ -20,10 +20,3 @@ export const postsReducer = (state = initState, action) => {
     }
 }
 
-export const fetchPostThunk = () => async (dispatch) => {
-    dispatch(showLoader())
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
-    const postsJson = await response.json()
-    dispatch(fetchPost(postsJson))
-    dispatch(hideLoader())
-}

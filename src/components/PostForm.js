@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {createPost, hideAlert, showAlert} from "../store/actions";
+import {advancedShowAlert, createPost, showAlert} from "../store/actions";
 import {Alert} from "../assets/Alert";
 
 class PostForm extends React.Component {
@@ -29,7 +29,7 @@ class PostForm extends React.Component {
             ...prevState,
             [event.target.name]: event.target.value
         }))
-        this.props.hideAlert()
+        this.props.advancedShowAlert()
     }
 
     render() {
@@ -63,4 +63,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, {createPost, showAlert, hideAlert})(PostForm)
+export default connect(mapStateToProps, {createPost, showAlert, advancedShowAlert})(PostForm)
