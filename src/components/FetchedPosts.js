@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Post} from "./Post";
 import {Loader} from "../assets/Loader";
-import {fetchPostThunk} from "../store/actions";
+import {fetchPostSaga, fetchPostThunk} from "../store/actions";
 
 export const FetchedPosts = () => {
 
@@ -13,7 +13,7 @@ export const FetchedPosts = () => {
 
     if (!fetchedPosts.length) return <button
         className='btn btn-primary'
-        onClick={() => dispatch(fetchPostThunk())}
+        onClick={() => dispatch(fetchPostSaga())}
     >Download</button>
 
     return fetchedPosts.map(p => <Post key={p.id} postTitle={p.title}/>)
